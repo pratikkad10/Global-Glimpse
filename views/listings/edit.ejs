@@ -1,0 +1,56 @@
+<% layout('layouts/boilerplate') %>
+<body>
+    <div class="row">
+        <div class="col-8 offset-2">
+    <h3 class="mt-5">Edit listing</h3>
+   
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT"  novalidate class="needs-validation">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input name="title" value="<%= listing.title %>" type="text" class="form-control" required>
+            <div class="invalid-feedback">title should be valid</div>
+            <div class="valid-feedback">looks good!</div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea required name="description" class="form-control"><%= listing.description %></textarea>
+            <div class="invalid-feedback">description should be valid</div>
+            <div class="valid-feedback">looks good!</div>
+        </div>
+        `
+        <div class="mb-3">
+            <label for="image" class="form-label">Image URL</label>
+            <input required name="image" value="<%= listing.image %>" type="text" class="form-control">
+            <div class="invalid-feedback">enter image URL</div>
+        </div>
+        <div class="row">
+        <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input required name="price" value="<%= listing.price %>" type="number" class="form-control">
+            <div class="invalid-feedback">enter valid price</div>
+        </div>
+        
+        <div class="mb-3 col-md-8">
+            <label for="location" class="form-label">Location</label>
+            <input required name="location" value="<%= listing.location %>" type="text" class="form-control">
+            <div class="invalid-feedback">location should be valid</div>
+        </div>
+        </div>
+        
+        <div class="mb-3">
+           <label for="country" class="form-label">Country</label>
+            <input required name="country" value="<%= listing.country %>" type="text" class="form-control">
+            <div class="invalid-feedback">country name should be valid</div>
+        </div>
+        
+        <button class="btn btn-dark mb-5">Submit</button>
+    </form>
+    </div>
+    </div>
+       
+    </form>
+</body>
+
+
+

@@ -1,0 +1,51 @@
+<% layout('layouts/boilerplate') %>
+<body>
+    <div class="row">
+        <div class="col-8 offset-2">
+    <h3 class="mt-5">Create new listing</h3>
+    <form method="post" action="/listings/new" novalidate class="needs-validation">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input name="title" placeholder="Title: Make it catchy!" type="text" class="form-control" required>
+            <div class="invalid-feedback">title should be valid</div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" class="form-control" required></textarea>
+            <div class="invalid-feedback">description should be valid</div>
+
+        </div>
+        
+        <div class="mb-3">
+            <label for="image" class="form-label">Image URL</label>
+            <input name="image" placeholder="Enter Image URL/Link" type="text" class="form-control">
+        </div>
+        <div class="row">
+        <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input name="price" placeholder="2500" type="number" class="form-control" required>
+            <div class="invalid-feedback">price should be valid</div>
+
+        </div>
+        
+        <div class="mb-3 col-md-8">
+            <label for="location" class="form-label">Location</label>
+            <input name="location" placeholder="Pune, Maharashtra" type="text" class="form-control" required>
+            <div class="invalid-feedback">location should be valid</div>
+
+        </div>
+        </div>
+        
+        <div class="mb-3">
+           <label for="country" class="form-label">Country</label>
+            <input name="country" placeholder="India" type="text" class="form-control" required>
+            <div class="invalid-feedback">country name should be valid</div>
+
+        </div>
+        
+        <button class="btn btn-dark mb-5">Add</button>
+    </form>
+    </div>
+    </div>
+</body>
