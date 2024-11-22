@@ -1,7 +1,6 @@
 const Listing =require('../models/listing');  //listing model
 
 exports.listing= async (req, res)=>{
-    
     try {
         let {id}=req.params;
         let post= await Listing.findById(id).populate("reviews");
