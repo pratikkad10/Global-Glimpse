@@ -16,6 +16,14 @@ exports.login=(req,res)=>{
 exports.signupHandler=async (req,res)=>{
     try {
         let {username, email, password}=req.body;
+       
+
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            req.flash('error', 'User already exists! Please choose a different username.');
+            return res.redirect('/user/signup');
+        }
+
         const newUser= new User({email,username});
         const registeredUser=await User.register(newUser, password);
         console.log(registeredUser);
@@ -24,7 +32,7 @@ exports.signupHandler=async (req,res)=>{
         
         
     } catch (error) {
-        // req.flash("error", error.message);
+        req.flash("error", error.message);
         res.redirect("/user/signup");
     }
 }
@@ -32,11 +40,8 @@ exports.signupHandler=async (req,res)=>{
 
 //login Handler
 exports.loginHandler=async (req,res)=>{
-    try {
-        
-        res.send("Welcome to Global Glimpse!!");
-
-    } catch (error) {
-        console.log(error);
-    }
+    // console.log("User Logged In!");
+    // res.send("Welcome to Global Glimpse!!");
+    req.flash("success", "Welcome to Global Glimpse!");
+    res.render('/listings');
 }

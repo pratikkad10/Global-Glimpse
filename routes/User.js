@@ -8,6 +8,6 @@ const {signup, signupHandler, login, loginHandler}=require('../controllers/Auth'
 router.get('/signup', signup);
 router.get('/login', login);
 router.post('/signup', signupHandler);
-router.post('/login',passport.authenticate('local', { failureRedirect: '/user/login' }), loginHandler);
+router.post('/login',passport.authenticate('local', { failureRedirect: '/user/login', failureFlash:true }), loginHandler);
 
 module.exports=router;

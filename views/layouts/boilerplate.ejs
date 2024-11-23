@@ -28,6 +28,19 @@
 
   <body>
     <%- include('../includes/navbar.ejs') %>
+    <div>
+      <% if (messages.error) { %>
+          <div  id="flash-error" class="flash-message flash-error">
+              <%= messages.error %>
+          </div>
+      <% } %>
+  
+      <% if (messages.success) { %>
+          <div id="flash-success" class="flash-message flash-success">
+              <%= messages.success %>
+          </div>
+      <% } %>
+  </div>
     <div class="container"><%- body %></div>
 
 

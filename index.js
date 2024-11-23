@@ -20,6 +20,8 @@ app.set("views", path.join(__dirname, "views"));
 const session = require('express-session'); 
 const flash = require('connect-flash');
 
+// flash configuration 
+
 
 //passport
 const passport=require('passport');
@@ -47,6 +49,12 @@ const sessionOptions = {
 };
 
 
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'defaultsecret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
+}));
 
 
 
@@ -58,7 +66,14 @@ dbConnect();
 
 //passport configuration
 app.use(session(sessionOptions));
+
 app.use(flash());
+app.use((req, res, next) => {
+    res.locals.messages = req.flash();
+    next();
+});
+
+
 
 app.use(passport.initialize());
 app.use(passport.session());

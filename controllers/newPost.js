@@ -1,5 +1,6 @@
 const Listing =require('../models/listing');  //listing model
 
+
 //joi validation
 //joi import
 const {listingSchema, reviewSchema}=require('../schema');
@@ -7,6 +8,7 @@ const {listingSchema, reviewSchema}=require('../schema');
 exports.newPost=async (req,res)=>{
     
     try {
+        
         // Validate the request body using Joi
         const { error } = listingSchema.validate(req.body);
         if (error) {
@@ -29,5 +31,9 @@ exports.newPost=async (req,res)=>{
 
 
 exports.newlisting=(req,res)=>{
+    if(!req.isAuthenticated()){
+        req.flash("error", "You must be logged in to access this page.");
+        return res.render('users/login');
+    }
     res.render("listings/new.ejs");
 };
