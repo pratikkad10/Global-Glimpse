@@ -43,5 +43,5 @@ exports.loginHandler=async (req,res)=>{
     // console.log("User Logged In!");
     // res.send("Welcome to Global Glimpse!!");
     req.flash("success", "Welcome to Global Glimpse!");
-    res.render('/listings');
+    res.render('listings/new.ejs');
 }

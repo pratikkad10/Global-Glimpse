@@ -33,7 +33,7 @@ exports.newPost=async (req,res)=>{
 exports.newlisting=(req,res)=>{
     if(!req.isAuthenticated()){
         req.flash("error", "You must be logged in to access this page.");
-        return res.redirect('users/login');  //here is an problem in these section
+        return res.redirect('/user/login');  //here is an problem in these section
     }
     res.render("listings/new.ejs");
 };
