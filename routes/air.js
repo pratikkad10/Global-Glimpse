@@ -8,17 +8,17 @@ const {editForm,editlisting}=require('../controllers/edit');
 const {deletelisting}=require('../controllers/delete');
 const {reviews}=require('../controllers/reviews');
 const {deleteReview}=require('../controllers/deleteReview');
+const {isLoggedIn}=require('../middleware/login');
 
-
-router.post('/listings/new', newPost);
-router.get('/listing/new',  newlisting);
-router.get('/listings/:id/edit',  editForm);
-router.put('/listings/:id',  editlisting);
-router.post('/listings/:id/reviews', reviews);
+router.post('/listings/new',isLoggedIn, newPost);
+router.get('/listing/new',isLoggedIn,  newlisting);
+router.get('/listings/:id/edit',isLoggedIn,  editForm);
+router.put('/listings/:id',isLoggedIn,  editlisting);
+router.post('/listings/:id/reviews',isLoggedIn, reviews);
 router.get('/listings', listings);
-router.get('/listings/:id', listing);
-router.delete('/listings/:id', deletelisting);
-router.delete('/listings/:id/reviews/:reviewId', deleteReview);
+router.get('/listings/:id',isLoggedIn, listing);
+router.delete('/listings/:id',isLoggedIn, deletelisting);
+router.delete('/listings/:id/reviews/:reviewId',isLoggedIn, deleteReview);
 
 
 module.exports = router;

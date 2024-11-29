@@ -69,9 +69,12 @@ app.use(session(sessionOptions));
 
 app.use(flash());
 app.use((req, res, next) => {
+    res.locals.currUser = req.user || null;
     res.locals.messages = req.flash();
+    // res.locals.currUser=req.body;
     next();
 });
+
 
 
 
