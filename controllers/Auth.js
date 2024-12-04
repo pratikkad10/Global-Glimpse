@@ -16,8 +16,7 @@ exports.login=(req,res)=>{
 exports.signupHandler=async (req,res)=>{
     try {
         let {username, email, password}=req.body;
-       
-
+        // res.locals.currUser = req.body || null;
         const existingUser = await User.findOne({ username });
         if (existingUser) {
             req.flash('error', 'User already exists! Please choose a different username.');
@@ -26,10 +25,16 @@ exports.signupHandler=async (req,res)=>{
 
         const newUser= new User({email,username});
         const registeredUser=await User.register(newUser, password);
-        console.log(registeredUser);
-        req.flash("success", "Welcome to Global Glimpse");
-        res.redirect('/listings');
-        
+
+        req.login(registeredUser, (err)=>{
+            if(err){
+               return next(err);
+            }
+            req.flash("success", "Welcome to Global Glimpse");
+            res.redirect('/listings');
+            
+        })
+
         
     } catch (error) {
         req.flash("error", error.message);
@@ -42,6 +47,7 @@ exports.signupHandler=async (req,res)=>{
 exports.loginHandler=async (req,res)=>{
     // console.log("User Logged In!");
     // res.send("Welcome to Global Glimpse!!");
+   
     req.flash("success", "Welcome to Global Glimpse!");
-    res.render('listings/new.ejs');
+    res.render(`${res.locals.redirectUrl}`);   //pending functionality  of redirect url
 }
