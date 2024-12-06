@@ -14,8 +14,8 @@ router.post('/listings/new',isLoggedIn, newPost);
 router.get('/listing/new',isLoggedIn,  newlisting);
 router.get('/listings/:id/edit',isLoggedIn,  editForm);
 router.put('/listings/:id',isLoggedIn,  editlisting);
-router.post('/listings/:id/reviews',isLoggedIn, reviews);
-router.get('/listings',isLoggedIn, listings);
+router.post('/listings/:id/reviews',isLoggedIn, reviews);    
+router.get('/listings',isLoggedIn, listings);    //removing isLoggedIn
 router.get('/listings/:id',isLoggedIn, listing);
 router.delete('/listings/:id',isLoggedIn, deletelisting);
 router.delete('/listings/:id/reviews/:reviewId',isLoggedIn, deleteReview);

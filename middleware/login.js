@@ -1,4 +1,7 @@
 module.exports.isLoggedIn= (req,res,next)=>{
+    console.log(req.path, "......", req.originalUrl);
+    
+
     console.log("req.user from middleware isloggedin ",req.user);
     res.locals.currUser = req.user || null;
     if(!req.isAuthenticated()){

@@ -45,9 +45,7 @@ exports.signupHandler=async (req,res)=>{
 
 //login Handler
 exports.loginHandler=async (req,res)=>{
-    // console.log("User Logged In!");
-    // res.send("Welcome to Global Glimpse!!");
-   
     req.flash("success", "Welcome to Global Glimpse!");
-    res.render(`${res.locals.redirectUrl}`);   //pending functionality  of redirect url
+    let redirect_url=res.locals.redirectUrl || '/listings';  
+    res.redirect(redirect_url);  
 }
